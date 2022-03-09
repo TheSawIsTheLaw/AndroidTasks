@@ -1,0 +1,4 @@
+<resources>
+	<string name="app_name">CooList</string>
+	<string name="deleteButtonInnerText">ухади...</string>
+</resources>
