@@ -1,5 +1,6 @@
 package com.cooList;
 
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,7 +56,12 @@ public class CooListAdapter extends RecyclerView.Adapter<CooListAdapter.CooListE
 	
 	@Override
 	public void onBindViewHolder(@NonNull final CooListElementViewHolder holder, final int position) {
-		final Pair<String, Integer> element = cooList.getElements().get(position);
+		final Pair<String, Integer> element;
+		try {
+			element = cooList.getElement(position);
+		} catch (Exception e) {
+			return;
+		}
 		
 		holder.tvName.setText(element.first);
 		holder.card.setCardBackgroundColor(element.second);
@@ -66,6 +72,6 @@ public class CooListAdapter extends RecyclerView.Adapter<CooListAdapter.CooListE
 	
 	@Override
 	public int getItemCount() {
-		return cooList.getElements().size();
+		return cooList.getCurrentNumberOfElements();
 	}
 }
